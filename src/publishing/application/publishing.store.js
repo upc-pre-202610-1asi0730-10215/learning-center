@@ -73,4 +73,7 @@ const usePublishingStore = defineStore('publishing', () => {
         updateCategory,
         deleteCategory
     }
+
 });
+
+export default usePublishingStore;
