@@ -30,12 +30,31 @@
     "actions": "Actions",
     "new": "New Category",
     "confirm-delete": "Are you sure you want to delete {name}?",
-    "delete-header": "Confirm Deletion",
+    "delete-header": "Confirm Deletion"
   },
   "category": {
     "new-title": "Create New Category",
     "edit-title": "Edit Category",
     "name": "Name",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "tutorials": {
+    "title": "Tutorials",
+    "id": "ID",
+    "summary": "Summary",
+    "category-id": "Category ID",
+    "actions": "Actions",
+    "new": "New Tutorial",
+    "confirm-delete": "Are you sure you want to delete {title}?",
+    "delete-header": "Confirm Deletion"
+  },
+  "tutorial": {
+    "new-title": "Create New Tutorial",
+    "edit-title": "Edit Tutorial",
+    "title": "Title",
+    "summary": "Summary",
+    "category": "Category",
     "save": "Save",
     "cancel": "Cancel"
   },
