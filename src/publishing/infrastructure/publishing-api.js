@@ -4,32 +4,63 @@ import {BaseEndpoint} from "../../shared/infrastructure/base-endpoint.js";
 const categoriesEndpointPath = import.meta.env.VITE_CATEGORIES_ENDPOINT_PATH;
 const tutorialsEndpointPath     = import.meta.env.VITE_TUTORIALS_ENDPOINT_PATH;
 
+/**
+ * Infrastructure service gateway for the Publishing bounded-context endpoints.
+ *
+ * @class PublishingApi
+ * @extends BaseApi
+ */
 export class PublishingApi extends BaseApi {
     #categoriesEndpoint;
     #tutorialsEndpoint;
 
+    /** Creates endpoint clients for categories and tutorials. */
     constructor() {
         super();
         this.#categoriesEndpoint = new BaseEndpoint(this, categoriesEndpointPath);
         this.#tutorialsEndpoint = new BaseEndpoint(this, tutorialsEndpointPath);
     }
 
+    /**
+     * Fetches all category resources.
+     * @returns {Promise<import('axios').AxiosResponse>} Promise resolving to the categories response.
+     */
     getCategories() {
         return this.#categoriesEndpoint.getAll();
     }
 
+    /**
+     * Fetches one category resource by identifier.
+     * @param {number|string} id - Category identifier.
+     * @returns {Promise<import('axios').AxiosResponse>} Promise resolving to the category response.
+     */
     getCategoryById(id) {
         return this.#categoriesEndpoint.getById(id);
     }
 
+    /**
+     * Creates a category resource.
+     * @param {Object} resource - Category resource payload.
+     * @returns {Promise<import('axios').AxiosResponse>} Promise resolving to the created category response.
+     */
     createCategory(resource) {
         return this.#categoriesEndpoint.create(resource);
     }
 
+    /**
+     * Updates a category resource.
+     * @param {Object} resource - Category resource payload (must include id).
+     * @returns {Promise<import('axios').AxiosResponse>} Promise resolving to the updated category response.
+     */
     updateCategory(resource) {
         return this.#categoriesEndpoint.update(resource.id, resource);
     }
 
+    /**
+     * Deletes a category resource by identifier.
+     * @param {number|string} id - Category identifier.
+     * @returns {Promise<import('axios').AxiosResponse>} Promise resolving to the delete response.
+     */
     deleteCategory(id) {
         return this.#categoriesEndpoint.delete(id);
     }

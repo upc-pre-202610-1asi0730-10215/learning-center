@@ -8,26 +8,28 @@ import {SignInCommand} from "../domain/sign-in.command.js";
 import {SignUpCommand} from "../domain/sign-up.command.js";
 
 const iamApi = new IamApi();
+
 /**
  * Application service store for the IAM bounded context.
- * It coordinates authentication commands and exposes UI-facing auth state.
+ * It coordinates authentication commands and exposes UI-facing identity state.
  *
+ * @module useIamStore
  * @returns {Object} Store state and actions.
  */
 const useIamStore = defineStore('iam', () => {
-    /** @type {import('vue').Ref<Array<User>>} Array of user entities. */
+    /** @type {import('vue').Ref<Array<import('../domain/user.entity.js').User>>} Array of user entities. */
     const users = ref([]);
-    /** @type {import('vue').Ref<Array<Error>>} Array of error messages. */
+    /** @type {import('vue').Ref<Array<Error>>} Errors raised by IAM use-case execution. */
     const errors = ref([]);
     /** @type {import('vue').Ref<boolean>} Flag indicating if users have been loaded. */
     const usersLoaded = ref(false);
     /** @type {import('vue').Ref<boolean>} Flag indicating if a user is signed in. */
     const isSignedIn = ref(false);
-    /** @type {import('vue').Ref<string|null>} The currently signed-in user entity. */
+    /** @type {import('vue').Ref<string|null>} Current signed-in username. */
     const currentUsername = ref(null);
-    /** @type {import('vue').Ref<number|null>} The currently signed-in user entity. */
+    /** @type {import('vue').Ref<number>} Current signed-in user identifier. */
     const currentUserId = ref(0);
-    /** @type {import('vue').ComputedRef<string|null>} The current authentication token. */
+    /** @type {import('vue').ComputedRef<string|null>} Authentication token in local storage. */
     const currentToken = computed(() => isSignedIn.value ? localStorage.getItem('token') : null);
 
     /**
