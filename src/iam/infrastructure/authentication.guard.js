@@ -14,4 +14,5 @@ export const authenticationGuard = (to, from, next) => {
     const publicRoutes = ['/iam/sign-in', '/iam/sign-up', '/about', '/page-not-found'];
     const routeRequiresToBeAuthenticated = !publicRoutes.includes(to.path);
     if (isAnonymous && routeRequiresToBeAuthenticated) return {name: 'iam-sign-in'};
+    console.log(`Navigating from ${from.name} to ${to.name}`);
 }
